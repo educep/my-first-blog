@@ -1,0 +1,43 @@
+Creating an application
+from djangogirls directory where manage.py file is:
+Mac OS X and Linux:
+(myvenv) ~/djangogirls$ python manage.py startapp blog
+Windows:
+(myvenv) C:\Users\Name\djangogirls> python manage.py startapp blog
+
+In  mysite/settings.py
+INSTALLED_APPS
+add blog
+
+Creating a blog post model
+
+blog/models.py file we define all objects called Models 
+ if you want to know more about Model fields and how to define things other than those described above (https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-types).
+
+ Create tables for models in your database
+The last step here is to add our new model to our database. First we have to make Django know that we have some changes in our model. (We have just created it!) Go to your console window and type python manage.py makemigrations blog. It will look like this:
+
+command-line
+(myvenv) ~/djangogirls$ python manage.py makemigrations blog
+Migrations for 'blog':
+  blog/migrations/0001_initial.py:
+  - Create model Post
+
+  Django prepared a migration file for us that we now have to apply to our database. Type python manage.py migrate blog and the output should be as follows:
+
+command-line
+(myvenv) ~/djangogirls$ 
+
+Django admin:
+
+As you can see, we import (include) the Post model defined in the previous chapter. To make our model visible on the admin page, we need to register the model with admin.site.register(Post).
+
+ - ---TEST --
+To log in, you need to create a superuser - a user account that has control over everything on the site. Go back to the command line, type 
+python manage.py createsuperuser
+ and press enter.
+
+ If you want to know more about Django admin, you should check Django's documentation: https://docs.djangoproject.com/en/1.11/ref/contrib/admin/
+
+ DEPLOY
+ 
