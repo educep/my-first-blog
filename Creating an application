@@ -40,4 +40,93 @@ python manage.py createsuperuser
  If you want to know more about Django admin, you should check Django's documentation: https://docs.djangoproject.com/en/1.11/ref/contrib/admin/
 
  DEPLOY
- 
+ Install Git 
+ all default options except for:
+ "Adjusting your PATH environment", choose "Use Git and optional Unix tools from the Windows Command Prompt" (the bottom option).
+
+Initilise an empty repository
+ You should be in the djangogirls folder.
+
+$ git init
+Initialized empty Git repository in ~/djangogirls/.git/
+$ git config --global user.name "Your Name"
+$ git config --global user.email you@example.com
+
+Git will track changes to all the files and folders in this directory, but there are some files we want it to ignore. We do this by creating a file called .gitignore in the base directory
+
+we save our changes. Go to your console and run these commands:
+
+command-line
+$ git add --all .
+$ git commit -m "My Django Girls app, first commit"
+ [...]
+ 13 files changed, 200 insertions(+)
+ create mode 100644 .gitignore
+ [...]
+ create mode 100644 mysite/wsgi.py
+
+repository github:
+ https://github.com/educep/my-first-blog.git
+
+ Now we need to hook up the Git repository on your computer to the one up on GitHub.
+
+Type the following into your console (Replace <your-github-username> with the username you entered when you created your GitHub account, but without the angle-brackets):
+
+command-line
+$ git remote add origin https://github.com/<your-github-username>/my-first-blog.git
+$ git push -u origin master
+
+pythonanywhere
+obtain token
+
+in console bach de pythonanywhere
+
+install pythonanywhere
+install --user pythonanywhere
+
+we need to initialize the admin account with createsuperuser. PythonAnywhere has automatically activated your virtualenv for you, so all you need to do is run:
+
+PythonAnywhere command-line
+(ola.pythonanywhere.com) $ python manage.py createsuperuser
+
+URLS
+Una vez hechotodo eso, hay que crear un url, ver a qué se parecen los urls en djando en :
+mysirt\urls.py
+we will import URLs from our blog application to the main mysite/urls.py file.
+Go ahead, add a line that will import blog.urls. Note that we are using the include function here so you will need to add that import.
+
+Your mysite/urls.py file should now look like this:
+
+mysite/urls.py
+from django.conf.urls import include
+from django.conf.urls import url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'', include('blog.urls')),
+]
+
+ ------  blog.urls  ----------
+Create a new empty file named urls.py in the blog directory. All right! Add these first two lines:
+
+blog/urls.py
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.post_list, name='post_list'),
+]
+
+-------- Django views ---------
+
+blog/views.py
+def post_list(request):
+    return render(request, 'blog/post_list.html', {})
+
+----- templates ----------
+
+emplates are saved in blog/templates/blog directory. So first create a directory called templates inside your blog directory. Then create another directory called blog inside your templates directory
+
+----------- Deploy!  ------------
+
