@@ -130,3 +130,62 @@ emplates are saved in blog/templates/blog directory. So first create a directory
 
 ----------- Deploy!  ------------
 
+git status
+git add --all .
+git status
+git commit -m "Changed the HTML for the site."
+git push
+
+PythonAnywhere command-line
+$ cd ~/<your-pythonanywhere-username>.pythonanywhere.com
+$ git pull
+
+----------  Django ORM and QuerySets  -------------
+A QuerySet is, in essence, a list of objects of a given Model. QuerySets allow you to read the data from the database, filter it and order it.
+
+in local shell:
+python manage.py shell
+You're now in Django's interactive console. It's just like the Python prompt, but with some additional Django magic. :) You can use all the Python commands here too, of course.
+
+display all of our posts:
+from blog.models import Post
+Post.objects.all()
+Create object
+
+
+This is how you create a new Post object in database:
+
+command-line
+>>> Post.objects.create(author=me, title='Sample title', text='Test')
+me = an user
+To know who are my site's users:
+from django.contrib.auth.models import User
+User.objects.all()
+me = User.objects.get(username='ola')
+Post.objects.all()
+
+ ---------- Filter objects  -------------
+Post.objects.filter(author=me)
+Post.objects.filter(title__contains='title')  # attention double under score
+from django.utils import timezone
+Post.objects.filter(published_date__lte=timezone.now()) # to publish a post: 
+			post = Post.objects.get(title="Sample title")
+			post.publish()
+
+More about:  (look at tutorial)
+# ---------------------------
+Ordering objects
+Chaining QuerySets			
+# ---------------------------
+
+----------------- Dynamic data in templates ------------------
+To see in the site the post we need to "connect" model (posts) with views (the html visualized)
+Remember when we talked about including code written in different files? Now is the moment when we have to include the model we have written in models.py. We will add the line from .models import Post like this:
+
+blog/views.py
+from django.shortcuts import render
+from .models import Post
+
+publishing posts in html-------------
+
+Python variables in html {{ variable_name}} (double brakets)
