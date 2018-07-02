@@ -1,6 +1,19 @@
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+{% load staticfiles %}
 <html>
+
+	<div class="page-header">
+	    <h1><a href="/">Eduardo Blog: para hablar de frejoles</a></h1>
+	</div>
+
     <head>
+    	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <title>Test HTML</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">        
     </head>
     <body>
         <div>
@@ -9,21 +22,37 @@
 
         <div>
             <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">Compadre</a></h2>
+            <h1><a href="">Compadre</a></h1>
             <p>Compadre es el mejor.</p>
         </div>
 
         <div>
             <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My second post</a></h2>
+            <h1><a href="">My second post</a></h1>
             <p>Lots of bla blas f.</p>
         </div>
     </body>
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+
+	<div class="post">
+	    <p>published: {{ post.published_date }}</p>
+	    <h1><a href="">{{ post.title }}</a></h1>
+	    <p>{{ post.text|linebreaksbr }}</p>
+	</div>
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>published: {{ post.published_date }}</p>
+                    </div>
+                    <h1><a href="">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-{% endfor %}
+</div>
+
 </html>
