@@ -189,3 +189,43 @@ from .models import Post
 publishing posts in html-------------
 
 Python variables in html {{ variable_name}} (double brakets)
+ex:
+{{post}}
+publishes: <QuerySet [<Post: title1>, <Post: title2>, <Post: uruguay>, <Post: Sample title>]>
+
+
+GIT pulling ignoring local changes
+git reset --hard
+git pull
+
+ -------------- Make UP for the blog (improving the looks): --------------
+ install Bootstrap
+ To install Bootstrap, you need to add this to your <head> in your .html file:
+
+blog/templates/blog/post_list.html
+
+
+Where to put static files for Django
+Django already knows where to find the static files for the built-in "admin" app. Now we just need to add some static files for our own app, blog.
+
+We do that by creating a folder called static inside the blog app:
+
+djangogirls
+├── blog
+│   ├── migrations
+│   ├── static
+│   └── templates
+└── mysite
+
+We really recommend taking this free online Codeacademy HTML & CSS course. It can help you learn all about making your websites prettier with CSS.
+
+add "h1 a" change color to blog.css
+
+
+We also need to tell our HTML template that we added some CSS. Open the blog/templates/blog/post_list.html file and add this line at the very beginning of it:
+{% static 'css/blog.css' %} antes de todo
+blog/templates/blog/post_list.html in head
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
